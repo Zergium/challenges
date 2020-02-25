@@ -1,5 +1,5 @@
-// Runtime: 876 ms, faster than 5.48% of C++ online submissions.
-// Memory Usage: 401.1 MB, less than 16.67% of C++ online submissions.
+// Runtime: 948 ms, faster than 5.08% of C++ online submissions
+// Memory Usage: 414.9 MB, less than 16.67% of C++ online submissions
 
 class Solution {
 public:
@@ -22,7 +22,9 @@ public:
                 }
             }
             vector<Trie*> m_next;
-            bool m_isLeaf; // is this char is last of a word
+            bool m_isLeaf; // is this char is the last char of a word
+            unordered_map<string, bool> m_memo;
+            
             // add a new word to the trie
             void add(const char* str) {
                 if (*str == 0) {
@@ -42,6 +44,10 @@ public:
             bool match(Trie& root, const char* str) {
                 if (*str == 0) return this->m_isLeaf;
                 
+                if (m_memo.end() != m_memo.find(str)) {
+                    return true;
+                }
+                
                 bool result(false);
                 if (this->m_isLeaf) {
                     result = root.match(root, str);
@@ -54,6 +60,11 @@ public:
                         }
                     }
                 }
+                
+                if (result) {
+                    m_memo[str] = true;
+                }
+                
                 return result;
             }
         };
@@ -64,7 +75,7 @@ public:
         vector<string> result;
         Trie t;
         for (string& word: words) {
-            if (word.size()==0) continue;
+            if (word.size()==0) continue; // we ignore empty words
             if (t.match(t, word.c_str())) {
                 result.push_back(word);
             }
