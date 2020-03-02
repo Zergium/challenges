@@ -27,14 +27,16 @@ public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         struct node_t {
             vector<int> adj; // adjacent nodes
-        }
+        };
+        
+        wordList.push_back(beginWord);
         
         const int n = wordList.size();
         vector<node_t> graph(n);
         
         for (int i=0; i<n-1; ++i) {
             for (int j=1; j<n; ++j) {
-                if (isDistanceRight(a[i], b[j])) {
+                if (isDistanceRight(wordList[i], wordList[j])) {
                     graph[i].adj.push_back(j);
                     graph[j].adj.push_back(i);
                 }
@@ -45,8 +47,14 @@ public:
         int endIdx = -1;
         
         for (int i=0; i<n; ++i) {
-            if (a[i] == beginWord) beginIdx = i;
-            if (b[i] == endWord) endIdx = i;
+            if (wordList[i] == beginWord) beginIdx = i;
+            if (wordList[i] == endWord) endIdx = i;
+            if (beginIdx != -1 && endIdx != -1) break;
+        }
+        
+        if (beginIdx == -1 || endIdx == -1) {
+            // no words present in the 
+            return 0;
         }
         
         // graph is set
@@ -56,7 +64,7 @@ public:
         deque< pair<int, int> > queue;
         set<int> visitedNodesIdx;
         
-        queue.push_back({beginIdx, 0});
+        queue.push_back({beginIdx, 1});
         while (!queue.empty()) {
             pair<int,int> node = queue.front();
             queue.pop_front();
@@ -67,8 +75,8 @@ public:
             for (int nextIdx: graph[nodeIdx].adj) {
                 if (nextIdx == endIdx) return (steps + 1);
                 if (visitedNodesIdx.end() == visitedNodesIdx.find(nextIdx)) {
-                    visitedNodesIdx.push(nextIdx);
-                    queue.push_back({nextIdx, steps+1})
+                    visitedNodesIdx.insert(nextIdx);
+                    queue.push_back({nextIdx, steps+1});
                 }
             }
         }
