@@ -23,10 +23,34 @@ public:
     }
     
     vector<int> exclusiveTime(int n, vector<string>& logs) {
+        deque<int> callstack;
+        vector<int> times_of_fn(n, 0);
+        int now = -1;
+        int prev_start = -1;
         for (auto s: logs) {
             event_t e = strToEvent(s);
-            cout << "s: " << s << "  -->  " << e.to_string() << endl;
+            if (e.start) {
+                if (now >= 0) {
+                    times_of_fn[now] += e.ts - prev_start;
+                    callstack.push_back(now);
+                }
+                now = e.fn;
+                prev_start = e.ts;
+            } else {
+                if (now != e.fn) {
+                    cout << "!!! finishing wrong fn";
+                };
+                times_of_fn[now] += e.ts - prev_start + 1;
+                if (callstack.empty()) {
+                    now = -1;
+                } else {
+                    now = callstack.back();
+                    callstack.pop_back();
+                }
+                prev_start = e.ts + 1;
+            }
+            //cout << "s: " << s << "  -->  " << e.to_string() << endl;
         }
-        return {1};
+        return times_of_fn;
     }
 };
