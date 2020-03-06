@@ -4,26 +4,26 @@ public:
         if (s.empty()) return true;
   
         unordered_set<string> wordsSet(wordDict.begin(), wordDict.end());
-        unordered_set<int> wordLenghtsSet;
+        unordered_set<int> wordLengthsSet;
         for (const string& word: wordDict) {
-            wordLenghtsSet.insert(word.length());
+            wordLengthsSet.insert(word.length());
         }
-        vector<int> wordLengths(wordLenghts.begin(), wordLenghts.end());
-        sort(wordLengths.begin(), wordLenghts.end(), greater<>());
+        vector<int> wordLengths(wordLengthsSet.begin(), wordLengthsSet.end());
+        sort(wordLengths.begin(), wordLengths.end(), greater<>());
         
         deque<int> posToCheck;
         posToCheck.push_back(0);
         
         vector<bool> visitedPos(1 + s.length(), false);
         
-        while (posToCheck.empty()) {
+        while (!posToCheck.empty()) {
             int pos = posToCheck.front();
-            posToCheck.pop_front;
+            posToCheck.pop_front();
             
-            for (int len: wordLenghts) {
-                if (pos + len > s.lenghts()) continue;
+            for (int len: wordLengths) {
+                if (pos + len > s.length()) continue;
                 string wordTry(s.substr(pos, len));
-                if (wordsSet.find(wordTry) != wordSet.end()) {
+                if (wordsSet.find(wordTry) != wordsSet.end()) {
                     int nextPos = pos + len;
                     if (nextPos == s.length()) {
                         return true;
