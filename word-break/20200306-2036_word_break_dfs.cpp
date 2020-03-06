@@ -1,3 +1,6 @@
+// Runtime: 4 ms, faster than 93.61% of C++ online submissions for Word Break.
+// Memory Usage: 8.6 MB, less than 100.00% of C++ online submissions for Word Break.
+
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
