@@ -2,6 +2,9 @@
 // "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
 //["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]
 
+// Runtime: 4 ms, faster than 93.61% of C++ online submissions for Word Break.
+// Memory Usage: 9.8 MB, less than 83.02% of C++ online submissions for Word Break.
+
 class Solution {
     unordered_set<string> m_failedString;
 public:
