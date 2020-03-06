@@ -60,6 +60,18 @@ return (1 == num_diff_chars);
 return 1 == num_diff_chars;
 
 
+----
+        bool result = xRes.first == yRes.first && // same level
+            xRes.second != yRes.second; // different parents
+        return result;
+
+    vs
+
+        return xRes.first == yRes.first && // same level
+            xRes.second != yRes.second; // different parents
+
+----
+
 
 
 
