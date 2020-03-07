@@ -25,7 +25,7 @@ public:
             } else {
                 int spacesToSplit = maxWidth - charsPicked;
                 int equalSpaces = spacesToSplit / (row.size() - 1);
-                int restSpaces = spacesToSplit - (row.size()-1) * equalSpaces;
+                int restSpaces = spacesToSplit - (row.size() - 1) * equalSpaces;
                 int idxOfSpace = 0;
                 for (string& word: row) {
                     if (line.tellp() != 0) {
