@@ -8,13 +8,13 @@ public:
             int charsPicked(words[nextWordIdx].length());
             row.push_back(words[nextWordIdx]);
             nextWordIdx++;
-            while (nextWordIdx < words.site() &&
-                charsPicked + row.size() + 1 + words[nextWordIdx].length() <= maxWidth) {
-                charsPicked += words[nextWordIdx].length;
+            while (nextWordIdx < words.size() &&
+                charsPicked + row.size() + words[nextWordIdx].length() <= maxWidth) {
+                charsPicked += words[nextWordIdx].length();
                 row.push_back(words[nextWordIdx]);
                 nextWordIdx++;
             }
-            
+
             stringstream line;
             if (row.size() < 2 || nextWordIdx >= words.size()) {
                 for (string& word: row) {
@@ -24,11 +24,16 @@ public:
                 while (line.tellp() < maxWidth) line << " ";
             } else {
                 int spacesToSplit = maxWidth - charsPicked;
+                int equalSpaces = spacesToSplit / (row.size() - 1);
+                int restSpaces = spacesToSplit - (row.size()-1) * equalSpaces;
+                int idxOfSpace = 0;
                 for (string& word: row) {
                     if (line.tellp() != 0) {
-                        int numSpaces = spacesToSplit / (row.size() - 1);
-                        for (int i=1; i < numSpaces; ++i) 
+                        idxOfSpace++;
+                        int numSpaces = equalSpaces + ((restSpaces >= idxOfSpace) ? 1 : 0);
+                        for (int i=0; i < numSpaces; ++i) {
                             line << " ";
+                        }
                     }
                     line << word;
                 }
