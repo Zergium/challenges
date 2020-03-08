@@ -4,11 +4,10 @@ public:
         auto it_ch = pattern.begin();
         stringstream ss_str(str);
         string word;
-        bool has_word = getline(ss_str, word, ' ');
+        std::getline(ss_str, word, ' ');
         vector<string> known('z'-'a'+1);
-        while (it_ch != pattern.end() && has_word) {
+        while (it_ch != pattern.end() && !word.empty()) {
             char ch = *it_ch - 'a';
-            
             if (known[ch].empty()) {
                 known[ch] = word;
             } else {
@@ -18,10 +17,11 @@ public:
             }
             
             it_ch = next(it_ch);
-            has_word = getline(ss_str, word, ' ');
+            word.clear();
+            getline(ss_str, word, ' ');
         }            
         
-        if (has_word || it_ch != pattern.end()) {
+        if (!word.empty() || it_ch != pattern.end()) {
             return false;
         }
         
