@@ -5,10 +5,13 @@ public:
         stringstream ss_str(str);
         string word;
         std::getline(ss_str, word, ' ');
+        unordered_set<string> used;
         vector<string> known('z'-'a'+1);
         while (it_ch != pattern.end() && !word.empty()) {
             char ch = *it_ch - 'a';
             if (known[ch].empty()) {
+                if (used.find(word) != used.end()) return false;
+                used.insert(word);
                 known[ch] = word;
             } else {
                 if (known[ch] != word) {
