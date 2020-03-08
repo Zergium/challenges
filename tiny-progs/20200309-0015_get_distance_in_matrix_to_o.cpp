@@ -33,7 +33,7 @@ public:
             return i>=0 && j>=0 && i<w && j<h;
         };
         
-        vector<pair<int,int>> neigbours = {
+        vector<pair<int,int>> neighbours = {
             {1,0},
             {0,1},
             {-1,0},
@@ -52,7 +52,7 @@ public:
                 if (fn_pos_ok(new_i,new_j)) {
                     if (result[new_j][new_i] == NO_VALUE) {
                         result[new_j][new_i] = val+1;
-                        queue.push_back({new_i, new_j});
+                        qpos.push_back({new_i, new_j});
                     }
                 }
             }
