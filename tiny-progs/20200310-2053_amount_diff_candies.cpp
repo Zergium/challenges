@@ -5,23 +5,29 @@ public:
         for (int candy: candies) {
             amounts[candy] += 1;
         }
-        
-        vector<pair<int,int>> sorted;
-        for (auto candy_amount: amounts) {
-            sorted.push_back(candy_amount);
-        }
-        sort(begin(sorted), end(sorted), [](const pair<int,int>& a, const pair<int,int>& b) -> bool {
-            return a.second < b.second;
-        });
+        return min(amounts.size(), candies.size()/2);;
+    }
+};
 
-        int idx = 0;
-        int amount_for_child = candies.size() /2;
-        int counted = 0;
-        while (idx < sorted.size() && sorted[idx].second + counted < amount_for_child) {
-            counted += sorted[idx].second;
-        };
+
+///////////////// alternative is
+
+static auto __ __attribute__((unused)) = []() {  // NOLINT
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+  return nullptr;
+}();
+
+class Solution {
+public:
+    int distributeCandies(vector<int>& v) {
+        bitset<200001> kinds;
         
-        return idx;
-            
+        for (auto c: v) {
+            //kinds.insert(c);
+            kinds.set(c + 100000);
+        }
+        
+        return min(kinds.count(), v.size() / 2);
     }
 };
