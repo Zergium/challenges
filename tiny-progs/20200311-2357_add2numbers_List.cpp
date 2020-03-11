@@ -28,6 +28,7 @@ public:
             if (N->next != nullptr) ss << " -> ";
             N = N->next;
         }
+        ss << ")";
         return ss.str();
     }
     
@@ -38,13 +39,13 @@ public:
         ListNode* add2 = l2p;
         ListNode dummy;
         ListNode* res = &dummy;
-        cout << "add1: " << to_str(add1) << endl;
-        cout << "add2: " << to_str(add2) << endl;
+        // cout << "add1: " << to_str(add1) << endl;
+        // cout << "add2: " << to_str(add2) << endl;
         int pastDigit = 0;
-        while (nullptr != add1 && nullptr != add2) {
-            cout << "---- iter ----" << endl;
-            cout << "add1: " << to_str(add1) << endl;
-            cout << "add2: " << to_str(add2) << endl;
+        while (nullptr != add1 || nullptr != add2) {
+            // cout << "---- iter ----" << endl;
+            // cout << "add1: " << to_str(add1) << endl;
+            // cout << "add2: " << to_str(add2) << endl;
             int val1(0);
             if (add1 != nullptr) {
                 val1 = add1->val;
@@ -56,18 +57,17 @@ public:
                 add2 = add2->next;
             }
 
+//            cout << "  adding " << val1 << " + " << val2 << " + " << pastDigit;
             int sum = val1 + val2 + pastDigit;
             int digit = sum % 10;
             pastDigit = sum / 10;
-            cout << "  adding " << val1 << " + " << val2 << " + " << pastDigit;
-            cout << " sum = " << sum << ";   digit " << digit << " and postDigit " << pastDigit << endl;
+//            cout << " sum = " << sum << ";   digit " << digit << " and postDigit " << pastDigit << endl;
             res->next = new ListNode(digit);
             res = res->next;
-            add2 = add2->next;
         }
 
-        if (postDigit > 0)
-            res->next = new ListNode(digit);
+        if (pastDigit > 0)
+            res->next = new ListNode(pastDigit);
         
         ListNode* result = revert(dummy.next);
         return result;
