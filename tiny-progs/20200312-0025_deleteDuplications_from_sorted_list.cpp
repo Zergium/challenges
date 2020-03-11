@@ -19,9 +19,10 @@ public:
                     while (nullptr != checker->next && valToRemove == checker->next->val) {
                         checker->next = checker->next->next;
                     }
+                } else {
+                    checker = checker->next;
                 }
-                checker = checker->next;
-            }
+            } else break;
         }
         return tmp.next;
     }
