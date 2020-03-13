@@ -36,9 +36,26 @@ public:
     vector<int> prisonAfterNDays(vector<int>& cells, int N) {
         vector<int> next(256, -1);
         unsigned char ch = vec_to_char(cells);
-        for (int i=0; i<N; i++) {
-           // cout << i << ": " << char_to_str(ch) << endl;
+        next[ch] = 0;
+        for (int i=0; N > 0; i++) {
             ch = ~ ((ch >> 1) ^ (ch << 1)) & 0x7e;
+            cout << i << ": " << char_to_str(ch) << endl;
+            if (next[ch] < 0) {
+                next[ch] = i;
+                N--;
+            } else if (N > 255) {
+                int step = i - next[ch];
+                cout << "step: " << step << " | i=" << i << " vs next[ch]=" << next[ch] << "  |  N = " << N <<endl;
+                if (N > step) {
+                    N -= (N / step) * step;
+                    N--;
+                } else {
+                    N--;
+                }
+                
+                cout << "new N " << N << endl;
+            } else N--;
+            
         }
         return char_to_vec(ch);
     }
