@@ -28,7 +28,7 @@ public:
                 return false;
             }
             if ( groupWord.second == groupS.second ||
-               (3 <= groupS.second)) {
+               (3 <= groupS.second && groupWord.second < groupS.second)) {
                 // ok
             } else {
                 //cout << "tmp word: " << word << " vs " << S << "  --> " << "NO (num match), " << groupWord.second << " vs "<< groupS.second << endl;

@@ -14,3 +14,6 @@ TODO
 https://leetcode.com/problems/kth-largest-element-in-an-array/
 
 https://leetcode.com/problems/word-break/
+
+https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/
+https://leetcode.com/problems/expressive-words/
