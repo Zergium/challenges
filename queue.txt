@@ -17,3 +17,9 @@ https://leetcode.com/problems/word-break/
 
 https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/
 https://leetcode.com/problems/expressive-words/
+
+
+Disjoint Sets using union by rank and path compression Graph Algorithm
+https://www.youtube.com/watch?v=ID00PMy0-vE
+https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/discuss/?currentPage=1&orderBy=most_votes&query=
+
