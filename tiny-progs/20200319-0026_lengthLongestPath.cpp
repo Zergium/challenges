@@ -16,9 +16,7 @@ public:
                 i++;
             }
             
-            //trim_str(name);
             bool is_dir = (string::npos == name.find('.'));
-            
 
             while (!paths.empty() && paths.back().first >= indent) {
                 pathlen -= paths.back().second.length() + 1;
