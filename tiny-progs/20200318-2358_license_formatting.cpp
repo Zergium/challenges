@@ -8,12 +8,14 @@ public:
             if (ch == '-') continue;
             if (ch >= 'a' && ch <= 'z') ch += ('A'-'a');
             ss << ch;
-            if ((ss.tellp()-num_dashes) % K == 0 && i != 0) {
+            int sz(static_cast<int>(ss.tellp()) - num_dashes);
+            if (sz % K == 0) {
                 ss << '-';
                 num_dashes++;
             }
         }
         string result(ss.str());
+        while (!result.empty() && *prev(result.end()) == '-') result.pop_back();
         reverse(result.begin(), result.end());
         return result;
     }
