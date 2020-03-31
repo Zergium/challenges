@@ -1,33 +1,50 @@
 class Solution {
 public:
-    int pickLargest(int up_to, vector<int>& A) {
-        int best_idx = -1;
-        int best = -1;
-        for (int idx = 0; idx < A.size(); idx++) {
-            if (0 <= A[idx] && A[idx] <= up_to && best < A[idx]) {
-                best_idx = idx;
-                best = A[idx];
+    void tryNext(vector<int> vec_idx, vector<int>& A, int& maxHHMM) {
+        // cout << "called ";
+        // for (auto x: vec_idx) cout << x << "; ";
+        // cout << endl;
+        
+        if (vec_idx.size() == 4) {
+            int hh = A[vec_idx[0]] * 10 + A[vec_idx[1]];
+            int mm = A[vec_idx[2]] * 10 + A[vec_idx[3]];
+            //cout << "try hh = " << hh << ", mm=" << mm << endl;
+            if (hh < 24 && mm < 60) {
+                int cur = hh*100 + mm;
+                if (cur > maxHHMM) maxHHMM = cur;
+            }
+            //cout << "maxHHMM " << maxHHMM << endl;
+            return;
+        }
+        for (int idx = 0; idx<4; idx++) {
+            int used = false;
+            for (auto i : vec_idx) {
+                if (i == idx) {
+                    used = true;
+                    break;
+                }
+            }
+            if (!used) {
+                vector<int> vec2(vec_idx);
+                vec2.push_back(idx);
+                tryNext(vec2, A, maxHHMM);
             }
         }
-        if (best_idx >= 0) {
-            A[best_idx] = -1;
-        }
-        cout << "picked " << best << endl;
-        return best;
     }
     string largestTimeFromDigits(vector<int>& A) {
-        stringstream ss;
-        int digit;
-        digit = pickLargest(2, A);
-        if (digit >= 0) ss << digit; else return "";
-        int max_2nd = (digit > 1) ? 3 : 9;
-        digit = pickLargest(max_2nd, A);
-        if (digit >= 0) ss << digit; else return "";
-        ss << ':';
-        digit = pickLargest(5, A);
-        if (digit >= 0) ss << digit; else return "";
-        digit = pickLargest(9, A);
-        if (digit >= 0) ss << digit; else return "";
-        return ss.str();
+        int maxHHMM = -1;
+        tryNext({}, A, maxHHMM);
+        if (maxHHMM >= 0) {
+            stringstream ss;
+            int hh = maxHHMM / 100;
+            int mm = maxHHMM % 100;
+            if (hh < 10) ss << '0';
+            ss << hh;
+            ss << ':';
+            if (mm < 10) ss << '0';
+            ss << mm;
+            return ss.str();
+        }
+        return "";
     }
 };
