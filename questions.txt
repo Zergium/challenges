@@ -72,7 +72,14 @@ return 1 == num_diff_chars;
 
 ----
 
+            nums[curr] = 0;
+            curr++;
 
+vs
+
+            nums[curr++] = 0;
+
+----
 
 
 
