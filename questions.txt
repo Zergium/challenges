@@ -82,6 +82,14 @@ vs
 ----
 
 
+        return (ps == -1 && pt == -1);
+
+vs
+
+        bool result = (ps == -1 && pt == -1);
+        return result;
+
+-----
 
 
 Q:
