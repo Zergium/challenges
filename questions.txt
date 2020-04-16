@@ -4,46 +4,51 @@
 Q: what's better?  + (this is better) / - (this is bad) / = (doesn't matter)
 
 ----
-const int n = ...
+const int n = nums.size();    +
 int n = ...
 
 ----
-const int n(someList.size());
-const int n = someList.size();
+const int n(someList.size());    +
+const int n = someList.size();   
+const int n{someList.size()};    ++
 
 ----
-const int MAX_VALUE = ...
-const int max_value = ...
+const double MAX_VALUE = 3.1415;   +++
+const double max_value = 3.1415;   
 
 ----
-int i = std::numeric_limits<int>::max_value;
+int i = std::numeric_limits<int>::max();  +++
 int i = MAX_INT;
 
 ----
 struct Node_t { ...
-struct Node { ...
+struct Node { ...        +++
 struct node_t { ...
 
-----
-int numOfNodes = ...
-int numNodes = ...
-int numberOfNodes = ...
-int number_nodes = ...
+----  // consistency
+int numOfNodes = ...      +
+int numNodes = ...        +++
+int numberOfNodes = ...   +
+int number_nodes = ...    +
+int number = ...          ---
 
 ----
-int distance012(const string& a, const string& b) ...
+int distance012(const string& a, const string& b) ...                +
 int distance012(const string& first, const string& second) ...
 
 ----
-if (0 == a.size()) ...
-if (a.size() == 0) ...
+if (0 == a.size()) ...    +++
+if (a.size() == 0) ...    +++
 
 ----
-if (a.size() != b.size()) {
+if (a.size() != b.size()) {    +++
     return false;
 }
 
-if (a.size() != b.size()) return false;
+if (a.size() != b.size()) return false;   ---
+
+if (a.size() != b.size())                 ------
+   return false;  
 
 if (a.size() != b.size()) 
 {
@@ -51,33 +56,18 @@ if (a.size() != b.size())
 }
 
 ----
-int num_diff_chars(0);
-int numDiffChars(0);
-int numDiffChars = 0;
-
-----
-return (1 == num_diff_chars);
-return 1 == num_diff_chars;
+return (1 == num_diff_chars);         -
+return 1 == num_diff_chars;           +++
 
 
 ----
-        bool result = xRes.first == yRes.first && // same level
+        bool result = xRes.first == yRes.first && // same level    +++
             xRes.second != yRes.second; // different parents
         return result;
 
     vs
 
-        return xRes.first == yRes.first && // same level
+        return xRes.first == yRes.first && // same level           ++
             xRes.second != yRes.second; // different parents
 
 ----
-
-
-
-
-
-
-Q:
-
-
-
