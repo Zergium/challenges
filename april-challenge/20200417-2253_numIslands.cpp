@@ -19,8 +19,11 @@ public:
             for (int col = 0; col < w; col++) {
                 if (grid[row][col] == LAND_NEW) {
                     numLands++;
+                    
+                    // we found a land → flood fill it with DONE land
                     queue<pair<int,int>> q;
                     q.push({row,col});
+                    grid[row][col] = LAND_DONE;
                     while (!q.empty()) {
                         pair<int, int> pos = q.front(); q.pop();
                         int r = pos.first;
@@ -33,6 +36,7 @@ public:
                             if (next_r >= 0 && next_r < h &&
                                next_c >= 0 && next_c < w) {
                                  if (grid[next_r][next_c] == LAND_NEW) {
+                                     grid[next_r][next_c] = LAND_DONE;
                                     q.push({next_r, next_c});
                                  }
                             }
