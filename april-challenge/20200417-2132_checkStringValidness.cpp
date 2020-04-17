@@ -1,4 +1,11 @@
 
+Valid Parenthesis String
+
+Given a string containing only 
+three types of characters: '(', ')' and '*', 
+write a function to check whether this string is valid. We define the validity of a string by these rules:
+
+
 // 900 ms :(
 
 class Solution {
@@ -85,3 +92,67 @@ public:
 };
 
 
+/////////// state of the art ...
+
+  bool checkValidString(string s) {
+        int cmin = 0, cmax = 0;
+        for (char c : s) {
+            if (c == '(')
+                cmax++, cmin++;
+            if (c == ')')
+                cmax--, cmin = max(cmin - 1, 0);
+            if (c == '*')
+                cmax++, cmin = max(cmin - 1, 0);
+            if (cmax < 0) return false;
+        }
+        return cmin == 0;
+    }
+
+//// same but optimized a bit ↓    
+
+class Solution {
+public:
+    bool checkValidString(string s) {
+        int low = 0; int high = 0;
+        for(char c : s)
+        {
+            low += c == '(' ? 1 : -1;
+            high += c != ')' ? 1 : -1;
+            
+            if(high < 0) break;
+
+            low = max(low, 0);
+        }
+
+        return low == 0;
+    }
+};
+
+//////////////// mine version
+
+class Solution {
+public:
+    bool checkValidString(string s) {
+        int lo = 0;
+        int hi = 0;
+        for (char c: s) {
+            if (c == '(') {
+                lo++;
+                hi++;
+            } else if (c == ')') {
+                lo--;
+                hi--;
+            } else { // c== '*'
+                lo--;
+                hi++;
+            }
+            if (hi < 0) {
+                return false;
+            }
+            if (lo < 0) {
+                lo = 0;
+            }
+        }
+        return lo == 0;
+    }
+};
