@@ -71,3 +71,28 @@ return 1 == num_diff_chars;           +++
             xRes.second != yRes.second; // different parents
 
 ----
+
+            nums[curr] = 0;
+            curr++;
+
+vs
+
+            nums[curr++] = 0;
+
+----
+
+
+        return (ps == -1 && pt == -1);
+
+vs
+
+        bool result = (ps == -1 && pt == -1);
+        return result;
+
+-----
+
+
+Q:
+
+
+
