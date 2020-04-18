@@ -1,3 +1,5 @@
+///////////////////////// bfs (dejkstra)
+
 class Solution {
 public:
     int minPathSum(vector<vector<int>>& grid) {
@@ -89,5 +91,34 @@ public:
         // }
         
         return price[rows-1][cols-1];
+    }
+};
+
+
+
+
+
+/////////////////////////////// simpler, dynamics?
+
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        const int rows = grid.size();
+        if (rows < 1) return 0;
+        const int cols = grid[0].size();
+        if (cols < 1) return 0;
+        
+        vector<int> cost(cols);
+        cost[0] = grid[0][0];
+        for (int col = 1; col < cols; col++) {
+            cost[col] = cost[col-1] + grid[0][col];
+        }
+        for (int row = 1; row < rows; row++) {
+            cost[0] += grid[row][0];
+            for (int col = 1; col < cols; col++) {
+                cost[col] = grid[row][col] + min(cost[col-1], cost[col]);
+            }
+        }
+        return cost[cols-1];
     }
 };
