@@ -60,3 +60,47 @@ public:
         return -1; 
     }
 };
+
+
+===================  working version
+
+/**
+ * // This is the BinaryMatrix's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * class BinaryMatrix {
+ *   public:
+ *     int get(int x, int y);
+ *     vector<int> dimensions();
+ * };
+ */
+
+class Solution {
+public:
+    int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
+        vector<int> dimensions = binaryMatrix.dimensions();
+        int n = dimensions[0];
+        int m = dimensions[1];
+       
+        int best = -1;
+
+        for (int row = 0; row<n ; row++) {
+
+            int lo = 0;
+            int hi = best < 0 ? m-1 : best - 1;
+            while (lo<hi) {
+                int mi = (hi + lo) / 2;
+                int v = binaryMatrix.get(row, mi);
+                if (v == 0) 
+                    lo = mi+1;
+                else
+                    hi = mi;
+            }
+            
+            if (binaryMatrix.get(row, hi) == 1) {
+                if (best < 0 || best > hi) best = hi;
+            };
+            if (best == 0) break;
+        }
+        return best; 
+    }
+};
