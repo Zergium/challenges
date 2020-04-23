@@ -34,3 +34,29 @@ public:
         return count_arrays;
     }
 };
+
+
+------------------------ similar, just simplified (no need to keep tracked positions - as we need just amount)
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+
+        int count_arrays = 0;
+        int sum = 0;
+        unordered_map<int, int> sum_count;
+        sum_count[0]=1;
+        for (int i=0; i<nums.size(); i++) {
+            sum += nums[i];
+            
+            if (sum_count.count(sum-k) > 0) {
+                count_arrays += sum_count[sum-k];
+            }
+            
+            sum_count[sum]++;
+            
+        }
+        
+        return count_arrays;
+    }
+};
