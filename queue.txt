@@ -24,6 +24,9 @@ https://www.youtube.com/watch?v=ID00PMy0-vE
 https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/discuss/?currentPage=1&orderBy=most_votes&query=
 
 
+https://leetcode.com/problems/campus-bikes/
+
+
 G
 
 median of two sorted array
@@ -52,3 +55,30 @@ Regular expression matching
 Word search II
 Maximum Width of Binary Tree
 Shortest Path in Binary Matrix
+
+
+
+
+3. Prepare elementary math concepts
+
+Sometimes some elementary math comes into play. You may need them in certain questions. The examples are but not limited to:
+
+Geometry (Slope, Areas, Perimeters, Vectors, Matrices, Orthogonality)
+Characters Encoding (ASCII, bit representations)
+Common distance formula (L1 norm, L2 norm)
+Distributions (Uniform Distribution, Random Sampling)
+4. Be ready to discuss scalability/distributed system-related quetions
+
+If you are very good to be reaching this stage, you will probably need these mindsets to further increase your chance of passing.
+
+Common questions regarding these topics are:
+
+What if now I have a very very large input and I need to run the algorithm many many times? How do you optimize it?
+I made an example for 973. K Closest Points to Origins
+(https://leetcode.com/problems/k-closest-points-to-origin/discuss/576025/python-3-lines-knn-search-using-kd-tree-for-large-number-of-queries)
+What if I have a lot of computers as resources? How would you optimize the algorithm given such resources?
+Some strategies to address the above questions are but not limited to:
+
+Time-space trade off (Use alternative DS such that more memory is taken but less time cost for each run)
+Pre-processing tactics (A higher time complexity for pre-processing is fine as you only need to pre-process once, but then later on have much better time cost for each run)
+Concurrency optimization (Map Reduce, Multi-threads, etc)
