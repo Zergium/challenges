@@ -40,3 +40,43 @@ public:
  */
 
 
+/////////////////////////////////
+
+
+class FirstUnique {
+public:
+    queue<int> unique;
+    unordered_map<int, int> num_counts;
+    
+    unordered_set<int> multiple;
+    FirstUnique(vector<int>& nums) {
+        for (int num: nums) {
+            int count = ++num_counts[num];
+            if (count == 1) {
+                unique.push(num);
+            }
+        }
+    }
+    
+    int showFirstUnique() {
+        while (unique.size() > 0 && num_counts[unique.front()]>1) unique.pop();
+        if (unique.size() < 1) {
+            return -1; 
+        }
+        return unique.front();
+    }
+    
+    void add(int value) {
+        int count = ++num_counts[value];
+        if (count == 1) {
+            unique.push(value);
+        }
+    }
+};
+
+/**
+ * Your FirstUnique object will be instantiated and called as such:
+ * FirstUnique* obj = new FirstUnique(nums);
+ * int param_1 = obj->showFirstUnique();
+ * obj->add(value);
+ */
