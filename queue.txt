@@ -67,6 +67,9 @@ Geometry (Slope, Areas, Perimeters, Vectors, Matrices, Orthogonality)
 Characters Encoding (ASCII, bit representations)
 Common distance formula (L1 norm, L2 norm)
 Distributions (Uniform Distribution, Random Sampling)
+
+
+
 4. Be ready to discuss scalability/distributed system-related quetions
 
 If you are very good to be reaching this stage, you will probably need these mindsets to further increase your chance of passing.
